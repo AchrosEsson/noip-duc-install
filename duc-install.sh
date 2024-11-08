@@ -46,15 +46,24 @@ if [ ! -f "noip-duc-latest.tar.gz" ]; then
     tar xf noip-duc-latest.tar.gz
 fi
 
-# Extract the version number from the extracted directory name
-VERSION=$(ls -d noip-duc_*/ | head -n 1 | sed 's#/##')
+# Extract the version number from the extracted directory name dynamically
+VERSION=$(find . -type d -name "noip-duc_*" | head -n 1)
 
 # Step 3: Install the selected package based on architecture if it's not installed
 if ! dpkg -l | grep -q "noip-duc"; then
     echo "Installing No-IP DUC for $ARCH..."
-    chmod 644 "$VERSION"/binaries/noip-duc_*_"$ARCH_SUFFIX".deb
-    cd "$VERSION"/binaries
-    apt install ./"noip-duc_*_$ARCH_SUFFIX.deb"
+
+    # Prüfen, ob die .deb-Datei existiert
+    DEB_PACKAGE=$(find "$VERSION"/binaries -name "noip-duc_*_${ARCH_SUFFIX}.deb")
+    if [ -n "$DEB_PACKAGE" ]; then
+        DEB_PACKAGE=$(realpath "$DEB_PACKAGE")  # Absoluten Pfad ermitteln
+        chmod 644 "$DEB_PACKAGE"
+        cd "$VERSION"/binaries
+        apt install "$DEB_PACKAGE"
+    else
+        echo "No suitable .deb package found for architecture $ARCH_SUFFIX."
+        exit 1
+    fi
 fi
 
 # Ensure /etc/default directory exists
