@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Copyright (c) 2024 Manuel Hampel
 # This script is provided under the MIT License.
 # See the LICENSE file for details.
 
