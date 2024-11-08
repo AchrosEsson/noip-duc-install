@@ -22,7 +22,7 @@ This script automates the installation, configuration, and management of the No-
 
 ### Automated install:
    ```bash
-   sudo curl -L https://github.com/AchrosEsson/noip-duc-install/raw/main/duc-install.sh -o duc-install.sh
+   sudo curl -L https://github.com/AchrosEsson/noip-duc-install/raw/main/duc-install.sh -o duc-install.sh && sudo chmod +x duc-install.sh && sudo ./duc-install.sh
    ```
 ### Steps to Install manually:
 1. **Download the script**:
