@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This script is provided under the MIT License.
+# See the LICENSE file for details.
+
 # Automation script for downloading, installing, and configuring No-IP DUC with architecture detection and seamless credential management, including easy updates
 
 # Check if the script is run as root
