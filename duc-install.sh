@@ -12,14 +12,6 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-#!/bin/bash
-
-# Check if the script is run as root
-if [ "$EUID" -ne 0 ]; then
-  echo "This script must be run as root. Please run with sudo or as root user."
-  exit 1
-fi
-
 # Step 1: Determine system architecture
 ARCH=$(uname -m)
 case "$ARCH" in
